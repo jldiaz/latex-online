@@ -164,7 +164,7 @@ app.post('/data', upload.any(), async (req, res) => {
     var file = req.files[0];
     var preparation = await latexOnline.prepareTarballCompilation(file.path, req.query.target, command);
     if (preparation)
-        await handleResult(res, preparation, true /* force */, null /* downloadName */);
+        await handleResult(res, preparation, false /* force */, null /* downloadName */);
     else
         sendError(res, 'ERROR: failed to process file upload!');
     utils.unlink(file.path);
